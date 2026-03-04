@@ -1,0 +1,616 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --primary:      #F07407;
+  --primary-dark: #d96800;
+
+  /* Dark surfaces */
+  --d0: #0A0A0A;
+  --d1: #111111;
+  --d2: #181818;
+  --d3: #202020;
+  --d-border: rgba(255,255,255,0.08);
+
+  /* Light surfaces */
+  --l0: #FAFAF8;
+  --l1: #F2F0EC;
+  --l2: #E8E5E0;
+  --l3: #DEDAD4;
+  --l-border: rgba(0,0,0,0.08);
+
+  /* Text on dark */
+  --dt1: #F0EDE8;
+  --dt2: #8A8480;
+  --dt3: #504C48;
+
+  /* Text on light */
+  --lt1: #1A1714;
+  --lt2: #6B6560;
+  --lt3: #A09890;
+
+  /* Layout */
+  --max-w:    1200px;
+  --px:       var(--spacing-el);   /* 128px — padding lateral desktop */
+  --px-mob:   var(--spacing-m);    /* 24px  — padding lateral mobile  */
+  --py:       var(--spacing-ml);   /* 64px  — padding vertical seções  */
+  --py-mob:   var(--spacing-ml);   /* 64px  — padding vertical mobile  */
+
+  /* Spacing scale */
+  --spacing-es:  2px;    /* tag padding-top / bottom          */
+  --spacing-vs:  4px;    /* tag padding-left / right          */
+  --spacing-ms:  8px;    /* espaçamento interno de cards      */
+  --spacing-s:   16px;   /* elementos inline, ícones          */
+  --spacing-m:   24px;   /* gap título→conteúdo, padding mobile lateral, padding cards */
+  --spacing-l:   32px;   /* gap entre listas de cards         */
+  --spacing-ml:  64px;   /* padding-top/bottom de seções      */
+  --spacing-xl:  96px;   /* hero mobile padding-top           */
+  --spacing-el:  128px;  /* padding lateral desktop, padding-top Hero */
+
+  /* Border radius */
+  --radius: 8px;
+
+  /* Typography */
+  --font-title: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-body:  -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--d0);
+  color: var(--dt1);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--primary); color: #fff; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--d0); }
+::-webkit-scrollbar-thumb { background: var(--d3); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYOUT SYSTEM
+   – .wrap: sem max-width, só padding lateral. Filho centralizado em 1200px.
+   – .inner: max-width 1200px + auto margins
+═══════════════════════════════════════════════════════════════════════════ */
+.wrap {
+  width: 100%;
+  padding-inline: var(--px);
+  padding-block: var(--py);
+}
+.inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
+/* Seções sem padding (ex: Ticker) */
+.wrap-flush { padding-inline: 0; padding-block: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SURFACE ALTERNÂNCIA — escuro / claro
+═══════════════════════════════════════════════════════════════════════════ */
+.surf-dark  { background: var(--d0); color: var(--dt1); }
+.surf-dark2 { background: var(--d1); color: var(--dt1); }
+.surf-light { background: var(--l0); color: var(--lt1); }
+.surf-light2{ background: var(--l1); color: var(--lt1); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   Títulos: Cormorant Garamond (serifa elegante, alta-moda, séria)
+   Body:    SF Pro / system-ui (Apple standard)
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPE SCALE — variáveis de tamanho por breakpoint
+   Desktop (≥ 321px): h1=72 h2=56 h3=48 p=20 span=16
+   Mobile  (≤ 320px): h1=42 h2=32 h3=24 p=20 span=16
+   Nota: p e span são iguais em ambos os breakpoints
+═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --fs-h1:   4.5rem;   /* 72px */
+  --fs-h2:   3.5rem;   /* 56px */
+  --fs-h3:   3rem;     /* 48px */
+  --fs-h4:   2rem;     /* 32px */
+  --fs-p:    1.25rem;  /* 20px */
+  --fs-span: 0.75rem;  /* 12px */
+
+  /* UI elements — aliases */
+  --fs-btn:         var(--fs-p);     /* 20px — botões */
+  --fs-nav:         var(--fs-p);     /* 20px — navbar/footer links */
+  --fs-badge:       var(--fs-p);     /* 20px — números de destaque */
+  --fs-label:       var(--fs-span);  /* 12px — pills uppercase */
+  --fs-tag:         var(--fs-span);  /* 12px — chips de case */
+  --fs-ticker:      var(--fs-p);     /* 20px — faixa de scroll */
+  --fs-wordmark:    var(--fs-p);     /* 20px — logo */
+  --fs-mobile-menu: var(--fs-p);     /* 20px — drawer mobile */
+  --fs-icon-lbl:    var(--fs-p);     /* 20px — icon + text combos */
+
+  --lh-h1: 1.1;
+  --lh-h2: 1.3;
+  --lh-h3: 1.3;
+  --lh-p:  1.5;
+}
+
+@media (max-width: 860px) {
+  :root {
+    --fs-h1: 2rem;      /* 32px */
+    --fs-h2: 1.5rem;    /* 24px */
+    --fs-h3: 1.25rem;   /* 20px */
+    --fs-h4: 1.125rem;  /* 18px */
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    --fs-h1: 2rem;      /* 32px */
+    --fs-h2: 1.5rem;    /* 24px */
+    --fs-h3: 1.25rem;   /* 20px */
+    --fs-h4: 1.125rem;  /* 18px */
+  }
+}
+
+/* Títulos — Cormorant Garamond */
+.t-hero {
+  font-family: var(--font-title);
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: var(--lh-h1);
+  letter-spacing: -0.01em;
+}
+.t-h2 {
+  font-family: var(--font-title);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: var(--lh-h2);
+  letter-spacing: -0.01em;
+}
+.t-h3 {
+  font-family: var(--font-title);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: var(--lh-h3);
+}
+.t-h4 {
+  font-family: var(--font-title);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: var(--lh-h3);
+}
+
+/* Body — SF Pro / system-ui */
+.t-lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-p);
+  font-weight: 400;
+  line-height: var(--lh-p);
+  letter-spacing: -0.003em;
+}
+.t-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-p);
+  font-weight: 400;
+  line-height: var(--lh-p);
+  letter-spacing: -0.003em;
+}
+.t-sm {
+  font-family: var(--font-body);
+  font-size: var(--fs-span);
+  font-weight: 400;
+  line-height: var(--lh-p);
+}
+.t-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: var(--lh-p);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* Accent gradient — títulos em laranja */
+.accent {
+  background: linear-gradient(135deg, #F07407 0%, #FF9A3C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.accent-dark {
+  background: linear-gradient(135deg, #d96800 0%, #F07407 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRID 12 COLUNAS — max 1200px
+═══════════════════════════════════════════════════════════════════════════ */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+/* Spans */
+.col-12 { grid-column: span 12; }
+.col-8  { grid-column: span 8;  }
+.col-6  { grid-column: span 6;  }
+.col-4  { grid-column: span 4;  }
+.col-3  { grid-column: span 3;  }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PILL / TAG
+═══════════════════════════════════════════════════════════════════════════ */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: var(--spacing-es) var(--spacing-s); border-radius: var(--radius);
+  font-family: var(--font-body); font-size: 0.6875rem;
+  font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.pill-on-dark {
+  border: 1px solid rgba(240,116,7,0.25);
+  background: rgba(240,116,7,0.08); color: #F07407;
+}
+.pill-on-light {
+  border: 1px solid rgba(180,80,0,0.2);
+  background: rgba(240,116,7,0.08); color: #b85500;
+}
+.pill-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: currentColor; display: inline-block; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════════════════════════════════════ */
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-track { display: flex; width: max-content; animation: ticker 36s linear infinite; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVBAR — breakpoints exatos
+   ≥ 860px: mostra nav+CTA, esconde hamburguer
+   < 860px: esconde nav+CTA, mostra hamburguer
+═══════════════════════════════════════════════════════════════════════════ */
+.nav-desktop { display: flex; }
+.nav-mobile  { display: none; }
+
+@media (max-width: 860px) {
+  .nav-desktop { display: none !important; }
+  .nav-mobile  { display: flex !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD DESTAQUE — hover zoom na imagem (CSS puro, sem JS)
+═══════════════════════════════════════════════════════════════════════════ */
+.card-destaque-grid:hover .card-destaque-photo {
+  transform: scale(1.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STICKY PHOTO — About section
+═══════════════════════════════════════════════════════════════════════════ */
+.sticky-photo {
+  position: relative; /* JS scroll-driven, not CSS sticky */
+}
+
+/* Coluna da foto */
+.about-photo-col {
+  position: relative;
+  align-self: center;
+}
+
+/* Frame da foto: usa altura da viewport menos navbar como referência */
+.about-photo-frame {
+  height: calc(100vh - 140px);
+  min-height: 500px;
+  max-height: 900px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROCESS — CSS hover sem JS
+═══════════════════════════════════════════════════════════════════════════ */
+.proc-cell { transition: background 0.2s; }
+.surf-dark  .proc-cell:hover { background: var(--d2); }
+.surf-dark2 .proc-cell:hover { background: var(--d2); }
+.surf-light .proc-cell:hover { background: var(--l2); }
+.proc-cell:hover .proc-icon  { color: var(--primary); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════════════════════ */
+.hero-section {
+  min-height: 100vh;
+  max-height: 960px;
+  padding-top: var(--spacing-el);
+}
+
+/* Spacing entre elementos — desktop 32px */
+.hero-mb     { margin-bottom: var(--spacing-l); }
+.hero-mb-lg  { margin-bottom: var(--spacing-l); }
+
+/* Stats — desktop: linha horizontal com dividers */
+.hero-stats       { flex-direction: row; }
+.hero-stat-item   { border-right-width: 1px; }
+
+@media (max-width: 1200px) {
+  .hero-section { padding-top: var(--spacing-el); }
+}
+
+@media (max-width: 860px) {
+  .hero-section {
+    min-height: unset;
+    max-height: unset;
+    height: auto;
+    padding-top: var(--spacing-el);
+    padding-bottom: var(--spacing-ml);
+  }
+
+  /* Spacing mobile — 24px */
+  .hero-mb    { margin-bottom: var(--spacing-m); }
+  .hero-mb-lg { margin-bottom: var(--spacing-m); }
+
+  /* Stats: empilha verticalmente, sem dividers */
+  .hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-s);
+    border-top: none;
+    padding-top: var(--spacing-m);
+    padding-bottom: 0;
+  }
+  .hero-stat-item {
+    border-right: none !important;
+    padding: 0 !important;
+    align-items: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-section {
+    padding-top: var(--spacing-el);
+    padding-bottom: var(--spacing-ml);
+  }
+  .hero-mb    { margin-bottom: var(--spacing-m); }
+  .hero-mb-lg { margin-bottom: var(--spacing-m); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE — 4 faixas de viewport
+   ─────────────────────────────────────────────────────────────────────────
+   1720px+   : widescreen       → --px 200px, --max-w 1440px
+   1201–1720 : desktop (base)   → --px 128px, --max-w 1200px  (tokens padrão)
+    861–1200 : notebook / large → --px  64px
+    320– 860 : tablet / mobile  → --px  24px  (--px-mob)
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Widescreen ≥ 1721px */
+@media (min-width: 1721px) {
+  :root {
+    --px:    200px;
+    --max-w: 1440px;
+  }
+}
+
+/* Notebook — 861–1200px */
+@media (max-width: 1200px) {
+  :root { --px: 64px; }
+}
+
+/* Tablet — 320–860px: padding reduz, process colapsa */
+@media (max-width: 860px) {
+  :root { --px: var(--px-mob); --py: var(--py-mob); }
+
+  /* Cases secundários: mantém 4 col (3 por linha) — o tablet ainda tem 12 col */
+  /* Areas: 6 col (2 por linha) */
+  .area-card { grid-column: span 6 !important; }
+
+  /* Process: empilha verticalmente */
+  .proc-desktop { display: none !important; }
+  .proc-mobile  { display: flex !important; }
+}
+
+/* Tablet estreito — 640px: cases vão para 2 por linha */
+@media (max-width: 640px) {
+  .case-secondary { grid-column: span 6 !important; }
+}
+
+/* Mobile — 480px: tudo em coluna única */
+@media (max-width: 480px) {
+  :root { --py: 48px; }
+
+  .case-secondary { grid-column: span 12 !important; }
+  .area-card      { grid-column: span 12 !important; }
+
+  /* About: empilha — copy acima, foto fixa abaixo */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-photo-col {
+    order: 2;
+    align-self: auto !important;
+  }
+  .about-photo-frame {
+    height: 320px !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    border-radius: var(--radius) !important;
+    position: relative !important;
+  }
+
+  /* CardDestaque: empilha imagem acima do copy */
+  .card-destaque-grid { grid-template-columns: 1fr !important; }
+  .card-destaque-img  { min-height: 240px !important; }
+
+  /* Case pages */
+  .case-metrics-grid  { grid-template-columns: 1fr 1fr !important; }
+  .case-nav-grid      { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .case-metrics-grid  { grid-template-columns: 1fr !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CASE PAGES — layout utilities
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Case hero: padding responsivo */
+.case-hero {
+  padding-top: calc(var(--spacing-el) + 40px);
+  padding-bottom: var(--spacing-ml);
+  padding-inline: var(--px);
+}
+
+/* Case hero: grid copy | imgCard — desktop */
+.case-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: var(--spacing-l);
+  align-items: center;
+}
+
+/* Grid de seções editoriais: 6col título | 6col corpo */
+.case-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-l);
+  align-items: start;
+}
+
+/* Seção editorial: altura mínima 960px + centralização vertical — desktop */
+.case-editorial-section {
+  min-height: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Grid de métricas: 3 colunas */
+.case-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-l);
+}
+
+/* Grid de navegação entre cases: 3 colunas — stretch para igualar altura */
+.case-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-l);
+  align-items: stretch;
+}
+
+/* Card secondary: 4 colunas no grid-12 (desktop) */
+.case-secondary {
+  grid-column: span 4;
+}
+
+/* CaseCard — zoom da imagem ao hover do link pai */
+a:hover .case-card-img,
+a:focus .case-card-img {
+  transform: scale(1.04);
+}
+.case-card-img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Meta row: linha única em 861+ */
+.case-meta-row {
+  flex-wrap: nowrap;
+}
+
+/* ≤ 860px: regras mobile compartilhadas */
+@media (max-width: 860px) {
+
+  /* Hero de case — padding-top reduzido */
+  .case-hero      { padding-top: var(--spacing-xl); }
+
+  /* Hero grid — colapsa em coluna única, imagem escondida */
+  .case-hero-grid { grid-template-columns: 1fr; }
+  .case-hero-img  { display: none; }
+
+  /* Seções editoriais — hug (sem min-height) + colapsa para 1 coluna */
+  .case-editorial-section {
+    min-height: unset;
+    height: auto;
+    justify-content: flex-start;
+  }
+  .case-section-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Meta row: grid 2 colunas → 3 linhas para 5 itens */
+  .case-meta-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    flex-wrap: unset !important;
+  }
+  .case-meta-row > * {
+    flex: unset !important;
+  }
+
+  /* Arrows dos cards de case — ocultar */
+  .case-arrow { display: none !important; }
+
+  /* --fs-p fixo em 16px independente da variável */
+  .t-lead, .t-body {
+    font-size: 1rem !important; /* 16px */
+  }
+
+  /* Banner: empilha copy + botões em coluna */
+  .banner-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .banner-cta {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+
+  /* Botões 100% width no mobile */
+  .btn-mobile-full {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .about-cta-wrap {
+    flex-direction: column !important;
+  }
+
+  /* Hero CTAs — fill width em coluna */
+  .hero-cta-wrap {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Footer — empilha em coluna */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .footer-brand {
+    grid-column: span 1 !important;
+  }
+
+  /* CardDestaque — esconde o quadradinho com arrow */
+  .card-arrow-box {
+    display: none !important;
+  }
+}
+
+
