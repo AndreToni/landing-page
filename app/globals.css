@@ -324,13 +324,91 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   PROCESS — CSS hover sem JS
+   CARD PROCESS
 ═══════════════════════════════════════════════════════════════════════════ */
-.proc-cell { transition: background 0.2s; }
-.surf-dark  .proc-cell:hover { background: var(--d2); }
-.surf-dark2 .proc-cell:hover { background: var(--d2); }
-.surf-light .proc-cell:hover { background: var(--l2); }
-.proc-cell:hover .proc-icon  { color: var(--primary); }
+
+/* Grid container — desktop: 6 col, mobile: 1 col */
+.proc-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--l-border);
+  border: 1px solid var(--l-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+/* Primeiros 3 cards: span 2 | Últimos 2: span 3 */
+.proc-grid .card-process:nth-child(-n+3) { grid-column: span 2; }
+.proc-grid .card-process:nth-child(n+4)  { grid-column: span 3; }
+
+/* Card */
+.card-process {
+  background: var(--l1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-ms);
+  transition: background 0.2s;
+}
+.surf-light .card-process:hover { background: var(--l2); }
+
+/* Header: número + separador (só mobile) + ícone */
+.card-process__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-process__num  { color: var(--lt3); }
+.card-process__icon {
+  font-size: var(--fs-span);
+  color: var(--lt3);
+  transition: color 0.2s;
+}
+.card-process:hover .card-process__icon { color: var(--primary); }
+
+/* Barra decorativa */
+.card-process__bar {
+  height: 2px;
+  background: var(--l2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.card-process__bar-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--primary);
+  border-radius: 99px;
+  opacity: 0.4;
+}
+
+/* Texto */
+.card-process__phase { color: var(--lt1); }
+.card-process__desc  { color: var(--lt2); flex: 1; }
+
+/* Outputs — lista com bullet (desktop) */
+.card-process__outputs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-vs);
+}
+.card-process__output-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-ms);
+}
+.card-process__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+.card-process__output-text { color: var(--lt3); }
+
 
 /* ═══════════════════════════════════════════════════════════════════════════
    HERO
@@ -421,9 +499,17 @@ body {
   /* Areas: 6 col (2 por linha) */
   .area-card { grid-column: span 6 !important; }
 
-  /* Process: empilha verticalmente */
-  .proc-desktop { display: none !important; }
-  .proc-mobile  { display: flex !important; }
+  /* Process: grid colapsa para coluna única */
+  .proc-grid {
+    grid-template-columns: 1fr;
+  }
+  .proc-grid .card-process:nth-child(-n+3),
+  .proc-grid .card-process:nth-child(n+4) {
+    grid-column: span 1;
+  }
+
+  /* CardProcess mobile: ícone laranja, lista de outputs em todos os breakpoints */
+  .card-process__icon { color: var(--primary); }
 }
 
 /* Tablet estreito — 640px: cases vão para 2 por linha */
