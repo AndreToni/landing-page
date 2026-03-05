@@ -97,16 +97,17 @@ export function Navbar() {
       }}>
         <nav style={{ display: 'flex', flexDirection: 'column' }}>
           {links.map(l => (
-            <Link key={l.label} href={hrefOf(l.href)} onClick={() => setOpen(false)}
+            <NavItem
+              key={l.label}
+              href={hrefOf(l.href)}
+              onClick={() => setOpen(false)}
+              defaultColor="var(--dt1)"
+              hoverColor="var(--primary)"
               style={{
-                fontFamily: 'var(--font-title)', fontSize: 'var(--fs-mobile-menu)', fontWeight: 600,
-                color: 'var(--dt1)', padding: 'var(--spacing-ms) 0',
+                padding:      'var(--spacing-s) 0',
                 borderBottom: '1px solid var(--d-border)',
-                textDecoration: 'none', transition: 'color 0.2s', lineHeight: 'var(--lh-h1)',
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--primary)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--dt1)')}
-            >{l.label}</Link>
+            >{l.label}</NavItem>
           ))}
         </nav>
         <a href="https://wa.me/5515998365749" target="_blank" rel="noopener noreferrer"
