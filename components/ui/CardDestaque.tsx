@@ -1,14 +1,14 @@
 import { ArrowRight } from 'lucide-react'
-import { HoverLink }  from './HoverLink'
-import { Tag }        from './Tag'
+import { HoverLink } from './HoverLink'
+import { Tag } from './Tag'
 
 export interface CardDestaqueProps {
-  tag:     string
+  tag: string
   company: string
-  headline:string
-  desc:    string
-  img:     string
-  href:    string
+  headline: string
+  desc: string
+  img: string
+  href: string
 }
 
 /**
@@ -83,9 +83,7 @@ export function CardDestaque({ tag, company, headline, desc, img, href }: CardDe
 
         {/* Middle: company + headline + desc */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 'var(--spacing-ms)' }}>
-          <p className="t-label" style={{
-            color: 'var(--primary)',
-          }}>{company}</p>
+
 
           <h3 className="t-h4" style={{ color: '#F0EDE8' }}>{headline}</h3>
 

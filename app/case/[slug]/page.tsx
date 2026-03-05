@@ -1,11 +1,12 @@
-import { Fragment }       from 'react'
-import { notFound }      from 'next/navigation'
-import type { Metadata }  from 'next'
-import { Navbar }         from '@/components/layout/Navbar'
-import { Footer }         from '@/components/layout/Footer'
-import { Breadcrumb }     from '@/components/case/Breadcrumb'
-import { CaseNav }        from '@/components/case/CaseNav'
-import { Tag }            from '@/components/ui/Tag'
+import { Fragment } from 'react'
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
+import { Breadcrumb } from '@/components/case/Breadcrumb'
+import { CaseNav } from '@/components/case/CaseNav'
+import { Tag } from '@/components/ui/Tag'
+import { CardItem } from '@/components/ui/CardItem'
 import { cases, getCaseBySlug, getOtherCases } from '@/lib/cases'
 
 /* ── Static routes ──────────────────────────────────────────────────────── */
@@ -21,18 +22,18 @@ export async function generateMetadata(
   const c = getCaseBySlug(slug)
   if (!c) return {}
   return {
-    title:       `${c.company} — ${c.headline} | André Toni Foguel`,
+    title: `${c.company} — ${c.headline} | André Toni Foguel`,
     description: c.desc,
   }
 }
 
 /* ── Helpers de cor por índice de seção ─────────────────────────────────── */
-const surf       = (i: number) => i % 2 === 0 ? 'surf-light' : 'surf-dark'
-const titleClr   = (i: number) => i % 2 === 0 ? 'var(--lt1)' : 'var(--dt1)'
-const labelClr   = (i: number) => i % 2 === 0 ? 'var(--lt3)' : 'var(--dt3)'
-const bodyClr    = (i: number) => i % 2 === 0 ? 'var(--lt2)' : 'var(--dt2)'
-const borderClr  = (i: number) => i % 2 === 0 ? 'var(--l-border)' : 'var(--d-border)'
-const listBg     = (i: number) => i % 2 === 0 ? 'var(--l1)'  : 'var(--d2)'
+const surf = (i: number) => i % 2 === 0 ? 'surf-light' : 'surf-dark'
+const titleClr = (i: number) => i % 2 === 0 ? 'var(--lt1)' : 'var(--dt1)'
+const labelClr = (i: number) => i % 2 === 0 ? 'var(--lt3)' : 'var(--dt3)'
+const bodyClr = (i: number) => i % 2 === 0 ? 'var(--lt2)' : 'var(--dt2)'
+const borderClr = (i: number) => i % 2 === 0 ? 'var(--l-border)' : 'var(--d-border)'
+const listBg = (i: number) => i % 2 === 0 ? 'var(--l1)' : 'var(--d2)'
 
 /* ── Page ───────────────────────────────────────────────────────────────── */
 export default async function CasePage(
@@ -55,9 +56,9 @@ export default async function CasePage(
         <div className="inner" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-m)' }}>
 
           <Breadcrumb items={[
-            { label: 'Início', href: '/'       },
-            { label: 'Cases',  href: '/#cases' },
-            { label: c.company                 },
+            { label: 'Início', href: '/' },
+            { label: 'Cases', href: '/#cases' },
+            { label: c.headline },
           ]} />
 
           {/* Tag */}
@@ -167,29 +168,17 @@ export default async function CasePage(
                     <ul style={{
                       listStyle: 'none', margin: 0,
                       padding: 0, display: 'flex',
-                      flexDirection: 'column', gap: 'var(--spacing-ms)',
+                      flexDirection: 'column', gap: 'var(--spacing-s)',
                     }}>
                       {section.list.map((item, j) => (
-                        <li key={j} style={{
-                          display: 'flex', gap: 'var(--spacing-m)',
-                          alignItems: 'flex-start',
-                          padding: 'var(--spacing-ms) var(--spacing-m)',
-                          background: listBg(i),
-                          borderRadius: 'var(--radius)',
-                          border: `1px solid ${borderClr(i)}`,
-                        }}>
-                          <span style={{
-                            color: 'var(--primary)', fontWeight: 700,
-                            flexShrink: 0, marginTop: '2px',
-                            fontFamily: 'var(--font-body)',
-                            fontSize: 'var(--fs-span)',
-                          }}>
-                            ↗
-                          </span>
-                          <span className="t-body" style={{ color: bodyClr(i) }}>
-                            {item}
-                          </span>
-                        </li>
+                        <CardItem
+                          key={j}
+                          bg={listBg(i)}
+                          border={borderClr(i)}
+                          color={bodyClr(i)}
+                        >
+                          {item}
+                        </CardItem>
                       ))}
                     </ul>
                   )}

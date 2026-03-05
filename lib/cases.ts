@@ -16,23 +16,23 @@ export interface CaseMetric {
 export interface CaseSection {
   label: string     // e.g. "01 / Contexto"
   title: string     // h2
-  body?:  string[]  // parágrafos
-  list?:  string[]  // itens em bullet
-  img?:   string    // imagem opcional da seção
+  body?: string[]  // parágrafos
+  list?: string[]  // itens em bullet
+  img?: string    // imagem opcional da seção
 }
 
 export interface Case {
-  slug:        string
-  tag:         string
-  company:     string
-  headline:    string
-  desc:        string
-  img:         string   // hero da página de case
-  imgCard:     string   // thumbnail nos cards da home
-  meta:        CaseMeta[]
-  highlight:   string   // frase de impacto do topo
-  metrics:     CaseMetric[]
-  sections:    CaseSection[]
+  slug: string
+  tag: string
+  company: string
+  headline: string
+  desc: string
+  img: string   // hero da página de case
+  imgCard: string   // thumbnail nos cards da home
+  meta: CaseMeta[]
+  highlight: string   // frase de impacto do topo
+  metrics: CaseMetric[]
+  sections: CaseSection[]
 }
 
 /* ── Dados ─────────────────────────────────────────────────────────────── */
@@ -41,25 +41,25 @@ export const cases: Case[] = [
 
   /* ── BALQ ────────────────────────────────────────────────────────────── */
   {
-    slug:    'balq',
-    tag:     'Produto industrial · B2B',
+    slug: 'balq',
+    tag: 'Produto industrial · B2B',
     company: 'Balq',
-    headline:'Automação de pátio e gestão de máquinas com múltiplos SKUs',
-    desc:    'Refatoração de produto para viabilizar pitch estratégico e fechar contrato enterprise.',
-    img:     'https://framerusercontent.com/images/3xWCGBBnL5czxY6fEHoU3OEAU.png',
+    headline: 'Automação de pátio e gestão de máquinas com múltiplos SKUs',
+    desc: 'Refatoração de produto para viabilizar pitch estratégico e fechar contrato enterprise.',
+    img: 'https://framerusercontent.com/images/3xWCGBBnL5czxY6fEHoU3OEAU.png',
     imgCard: 'https://framerusercontent.com/images/rKctNAnTrk3sz5iC1oFTXht5wSo.png',
     highlight: 'O contrato com a Braskem foi fechado após o pitch, viabilizado diretamente pela solução construída.',
     meta: [
-      { label: 'Empresa',    value: 'Balq'                },
-      { label: 'Segmento',   value: 'Automação industrial' },
-      { label: 'Plataforma', value: 'Web · Desktop'        },
-      { label: 'Ano',        value: '2024'                 },
-      { label: 'Papel',      value: 'Product Designer'     },
+      { label: 'Empresa', value: 'Balq' },
+      { label: 'Segmento', value: 'Automação industrial' },
+      { label: 'Plataforma', value: 'Web · Tablet' },
+      { label: 'Ano', value: '2024' },
+      { label: 'Papel', value: 'Product Designer' },
     ],
     metrics: [
-      { value: 'Braskem',   label: 'Primeiro cliente enterprise fechado após o redesenho' },
-      { value: '2',         label: 'Sprints de 15 dias para entregar a feature funcional'  },
-      { value: '2 perfis',  label: 'Personas mapeadas: operador e gestor'                 },
+      { value: 'Braskem', label: 'Primeiro cliente enterprise fechado após o redesenho' },
+      { value: '2', label: 'Sprints de 15 dias para entregar a feature funcional' },
+      { value: '2 perfis', label: 'Personas mapeadas: operador e gestor' },
     ],
     sections: [
       {
@@ -148,25 +148,25 @@ export const cases: Case[] = [
 
   /* ── ANGEPLUS ─────────────────────────────────────────────────────────── */
   {
-    slug:    'angeplus-prever',
-    tag:     'Produto regulado · Mobile',
+    slug: 'angeplus-prever',
+    tag: 'Produto regulado · Mobile',
     company: 'Angeplus',
-    headline:'Experiência digital para planos funerários multirregionais',
-    desc:    'Estruturação de hub de acesso considerando regras por plano, estado e ano, com foco em uso mobile.',
-    img:     'https://framerusercontent.com/images/txOCyg5H1jfBlRVlaM1YrjAvMZ8.png',
+    headline: 'Experiência digital para planos funerários multirregionais',
+    desc: 'Estruturação de hub de acesso considerando regras por plano, estado e ano, com foco em uso mobile.',
+    img: 'https://framerusercontent.com/images/txOCyg5H1jfBlRVlaM1YrjAvMZ8.png',
     imgCard: 'https://framerusercontent.com/images/xbaUJIExm3YfdwIkAUFmu8GIw.png',
     highlight: 'Aproximadamente 90% de adesão ao ambiente digital por parte dos assinantes.',
     meta: [
-      { label: 'Empresa',    value: 'Angeplus / Prever'  },
-      { label: 'Segmento',   value: 'Planos funerários'  },
-      { label: 'Plataforma', value: 'Mobile · Web App'   },
-      { label: 'Ano',        value: '2024'                },
-      { label: 'Papel',      value: 'Product Designer'   },
+      { label: 'Empresa', value: 'Angeplus / Prever' },
+      { label: 'Segmento', value: 'Planos funerários' },
+      { label: 'Plataforma', value: 'Mobile · Web App' },
+      { label: 'Ano', value: '2024' },
+      { label: 'Papel', value: 'Product Designer' },
     ],
     metrics: [
-      { value: '90%',  label: 'De adesão ao ambiente digital pelos assinantes'           },
-      { value: '3',    label: 'Estados atendidos: PR, SC e RS'                           },
-      { value: 'Web App', label: 'Solução publicada nas stores iOS e Android'            },
+      { value: '90%', label: 'De adesão ao ambiente digital pelos assinantes' },
+      { value: '3', label: 'Estados atendidos: PR, SC e RS' },
+      { value: 'Web App', label: 'Solução publicada nas stores iOS e Android' },
     ],
     sections: [
       {
@@ -265,25 +265,25 @@ export const cases: Case[] = [
 
   /* ── DESIGN SYSTEM ───────────────────────────────────────────────────── */
   {
-    slug:    'design-system',
-    tag:     'Escala · Eficiência',
+    slug: 'design-system',
+    tag: 'Escala · Eficiência',
     company: 'Design System',
-    headline:'Criação de Design System para múltiplos produtos digitais',
-    desc:    'Padronização de tokens, componentes e governança para reduzir retrabalho e acelerar entregas de design e desenvolvimento.',
-    img:     'https://framerusercontent.com/images/r6XbsGNAiDDbn0ThI6IBKGDtqmM.png',
+    headline: 'Criação de Design System para múltiplos produtos digitais',
+    desc: 'Padronização de tokens, componentes e governança para reduzir retrabalho e acelerar entregas de design e desenvolvimento.',
+    img: 'https://framerusercontent.com/images/r6XbsGNAiDDbn0ThI6IBKGDtqmM.png',
     imgCard: 'https://framerusercontent.com/images/rXB1kqHNX67tEZWYCygg6TMdsS8.png',
     highlight: 'Redução de mais de 50% no tempo de produção, revisão e QA de novas telas.',
     meta: [
-      { label: 'Contexto',   value: 'Ferreri — Multi-produto' },
-      { label: 'Segmento',   value: 'Design Ops'              },
-      { label: 'Plataforma', value: 'Figma · Web · Mobile'    },
-      { label: 'Ano',        value: '2023'                    },
-      { label: 'Papel',      value: 'Design System Lead'      },
+      { label: 'Contexto', value: 'Ferreri — Multi-produto' },
+      { label: 'Segmento', value: 'Design Ops' },
+      { label: 'Plataforma', value: 'Figma · Web · Mobile' },
+      { label: 'Ano', value: '2023' },
+      { label: 'Papel', value: 'Design System Lead' },
     ],
     metrics: [
       { value: '+50%', label: 'Redução no tempo de produção, revisão e QA de novas telas' },
-      { value: '100+', label: 'Componentes documentados e publicados no Figma'            },
-      { value: '1',    label: 'Designer mantendo o sistema após ganho de eficiência'      },
+      { value: '100+', label: 'Componentes documentados e publicados no Figma' },
+      { value: '1', label: 'Designer mantendo o sistema após ganho de eficiência' },
     ],
     sections: [
       {
@@ -383,25 +383,25 @@ export const cases: Case[] = [
 
   /* ── IPAM ─────────────────────────────────────────────────────────────── */
   {
-    slug:    'ipam',
-    tag:     'Sistema institucional · Campo',
+    slug: 'ipam',
+    tag: 'Sistema institucional · Campo',
     company: 'IPAM Amazônia',
-    headline:'Reestruturação de coleta e gestão de dados em contexto de infraestrutura limitada',
-    desc:    'Organização da arquitetura da informação e fluxos de navegação para apoiar tomada de decisão em contexto institucional.',
-    img:     'https://framerusercontent.com/images/bt0ZROipXsOPYl0qB0tBXxH2Chs.png',
+    headline: 'Reestruturação de coleta e gestão de dados em contexto de infraestrutura limitada',
+    desc: 'Organização da arquitetura da informação e fluxos de navegação para apoiar tomada de decisão em contexto institucional.',
+    img: 'https://framerusercontent.com/images/bt0ZROipXsOPYl0qB0tBXxH2Chs.png',
     imgCard: 'https://framerusercontent.com/images/QpNenxqzuNRKhryEkLDLbBqKJCI.png',
     highlight: 'Mesmo sem métricas quantitativas formais, o feedback qualitativo indicou ganho real em organização e confiabilidade da informação.',
     meta: [
-      { label: 'Empresa',    value: 'IPAM Amazônia'      },
-      { label: 'Segmento',   value: 'Pesquisa ambiental' },
-      { label: 'Plataforma', value: 'Mobile · Web'       },
-      { label: 'Ano',        value: '2023'                },
-      { label: 'Papel',      value: 'Product Designer'   },
+      { label: 'Empresa', value: 'IPAM Amazônia' },
+      { label: 'Segmento', value: 'Pesquisa ambiental' },
+      { label: 'Plataforma', value: 'Mobile · Web' },
+      { label: 'Ano', value: '2023' },
+      { label: 'Papel', value: 'Product Designer' },
     ],
     metrics: [
-      { value: '2',        label: 'Plataformas: app de campo e painel de gestão integrados' },
-      { value: '0',        label: 'Formulários em papel no fluxo de coleta após a entrega'  },
-      { value: 'Offline',  label: 'App projetado para funcionar sem conexão à internet'     },
+      { value: '2', label: 'Plataformas: app de campo e painel de gestão integrados' },
+      { value: '0', label: 'Formulários em papel no fluxo de coleta após a entrega' },
+      { value: 'Offline', label: 'App projetado para funcionar sem conexão à internet' },
     ],
     sections: [
       {

@@ -60,12 +60,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         {/* VLibras — acessibilidade LIBRAS */}
-        <div vw="true" className="enabled">
-          <div vw-access-button="true" className="active"></div>
-          <div vw-plugin-wrapper="true">
-            <div className="vw-plugin-top-wrapper"></div>
-          </div>
-        </div>
+        {/* dangerouslySetInnerHTML evita erro TS de atributos não-padrão do plugin */}
+        <div dangerouslySetInnerHTML={{ __html:
+          '<div vw="true" class="enabled">' +
+            '<div vw-access-button="true" class="active"></div>' +
+            '<div vw-plugin-wrapper="true">' +
+              '<div class="vw-plugin-top-wrapper"></div>' +
+            '</div>' +
+          '</div>'
+        }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `
