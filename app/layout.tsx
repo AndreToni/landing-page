@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
   /* ── Favicon / ícones ────────────────────────────────────────────────── */
   icons: {
-    icon:     '/favicon.png',
-    shortcut: '/favicon.png',
-    apple:    '/favicon.png',
+    icon:     '/assets/FavIcon.png',
+    shortcut: '/assets/FavIcon.png',
+    apple:    '/assets/FavIcon.png',
   },
 
   /* ── OpenGraph (LinkedIn, WhatsApp, Slack…) ──────────────────────────── */
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type:     'website',
     images: [
       {
-        url:    '/og-image.png',
+        url:    '/assets/Banner.png',
         width:  1200,
         height: 630,
         alt:    'ToniFoguel — Product Designer',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title:       'ToniFoguel — Product Designer',
     description:
       'Product Designer com mais de 4 anos de experiência em UX/UI, atuando em produtos B2B, SaaS, ambientes regulados e institucionais.',
-    images:      ['/og-image.png'],
+    images:      ['/assets/Banner.png'],
   },
 }
 
