@@ -3,10 +3,10 @@ import { HoverLink } from '@/components/ui/HoverLink'
 import { NavItem } from '@/components/ui/NavItem'
 
 const navLinks = [
-  { label: 'Cases',    href: '#cases'    },
+  { label: 'Cases', href: '#cases' },
   { label: 'Contexto', href: '#contexto' },
   { label: 'Processo', href: '#processo' },
-  { label: 'Sobre',    href: '#sobre'    },
+  { label: 'Sobre', href: '#sobre' },
 ]
 
 export function Footer() {
@@ -23,15 +23,16 @@ export function Footer() {
               <p style={{ fontFamily: 'var(--font-title)', fontSize: 'var(--fs-wordmark)', fontWeight: 600, color: 'var(--dt1)', marginBottom: 'var(--spacing-ms)' }}>
                 ToniFoguel<span style={{ color: 'var(--primary)' }}>.</span>
               </p>
-              <p className="t-body" style={{ color: 'var(--dt3)', maxWidth: '260px', marginBottom: 'var(--spacing-m)' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-p)', lineHeight: 'var(--lh-p)', color: 'var(--dt3)', maxWidth: '260px', marginBottom: 'var(--spacing-m)' }}>
                 Product Designer focado em produtos digitais e decisões orientadas a negócio.
               </p>
               {/* LinkedIn icon button */}
               <HoverLink
                 href="https://www.linkedin.com/in/andretonifoguel/"
                 target="_blank" rel="noopener noreferrer"
-                base={{ width:'36px', height:'36px', borderRadius:'var(--radius)', border:'1px solid var(--d-border)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'var(--fs-label)', fontWeight:700, fontFamily:'var(--font-body)', color:'var(--dt3)', textDecoration:'none', transition:'border-color 0.2s, color 0.2s' }}
-                hovered={{ borderColor:'var(--primary)', color:'var(--primary)' }}
+                className="t-label"
+                base={{ width: '36px', height: '36px', borderRadius: 'var(--radius)', border: '1px solid var(--d-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: 'var(--dt3)', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s' }}
+                hovered={{ borderColor: 'var(--primary)', color: 'var(--primary)' }}
               >in</HoverLink>
             </div>
 
@@ -61,7 +62,7 @@ export function Footer() {
           </div>
 
           {/* Bottom */}
-          <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-between', alignItems:'center', gap:'var(--spacing-ms)', paddingTop:'var(--spacing-m)', paddingBottom:'var(--spacing-m)', borderTop:'1px solid var(--d-border)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--spacing-ms)', paddingTop: 'var(--spacing-m)', paddingBottom: 'var(--spacing-m)', borderTop: '1px solid var(--d-border)' }}>
             <p className="t-sm" style={{ color: 'var(--dt3)' }}>© {year} André Toni Foguel. Todos os direitos reservados.</p>
             <p className="t-sm" style={{ color: 'var(--dt3)' }}>São Paulo, Brasil 🇧🇷</p>
           </div>
