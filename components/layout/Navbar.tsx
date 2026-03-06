@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
-import { NavItem } from '@/components/ui/NavItem'
+import { NavItem }    from '@/components/ui/NavItem'
+import { MobileMenu } from '@/components/layout/MobileMenu'
 
 const links = [
   { label: 'Cases',    href: '#cases'    },
@@ -14,8 +15,8 @@ const links = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const pathname = usePathname()
+  const [open, setOpen]         = useState(false)
+  const pathname                = usePathname()
 
   /* Na home: âncoras diretas. Em outras páginas: retorna à home + âncora */
   const hrefOf = (hash: string) => pathname === '/' ? hash : `/${hash}`
@@ -86,39 +87,11 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
-      <div style={{
-        position: 'fixed', inset: 0, zIndex: 40,
-        background: 'rgba(10,10,10,0.97)', backdropFilter: 'blur(24px)',
-        padding: 'var(--spacing-ml) var(--px-mob) var(--spacing-m)',
-        display: 'flex', flexDirection: 'column',
-        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
-        transition: 'opacity 0.3s ease',
-      }}>
-        <nav style={{ display: 'flex', flexDirection: 'column' }}>
-          {links.map(l => (
-            <NavItem
-              key={l.label}
-              href={hrefOf(l.href)}
-              onClick={() => setOpen(false)}
-              defaultColor="var(--dt1)"
-              hoverColor="var(--primary)"
-              style={{
-                padding:      'var(--spacing-s) 0',
-                borderBottom: '1px solid var(--d-border)',
-              }}
-            >{l.label}</NavItem>
-          ))}
-        </nav>
-        <a href="https://wa.me/5515998365749" target="_blank" rel="noopener noreferrer"
-          style={{
-            marginTop: 'var(--spacing-m)', padding: 'var(--spacing-s)', borderRadius: 'var(--radius)',
-            background: 'var(--primary)', color: '#fff',
-            fontFamily: 'var(--font-body)', fontWeight: 600,
-            textAlign: 'center', textDecoration: 'none', fontSize: 'var(--fs-btn)',
-          }}
-        >Entrar em contato</a>
-      </div>
+      <MobileMenu
+        open={open}
+        links={links.map(l => ({ label: l.label, href: hrefOf(l.href) }))}
+        onClose={() => setOpen(false)}
+      />
     </>
   )
 }
