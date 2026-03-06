@@ -510,6 +510,14 @@ body {
 
   /* CardProcess mobile: ícone laranja, lista de outputs em todos os breakpoints */
   .card-process__icon { color: var(--primary); }
+
+  /* Case nav: empilha em coluna única */
+  .case-nav-grid { grid-template-columns: 1fr !important; }
+
+  /* Cards de case na home: empilha em coluna única */
+  .case-secondary     { grid-column: span 12 !important; }
+  .card-destaque-grid { grid-template-columns: 1fr !important; }
+  .card-destaque-img  { min-height: 240px !important; }
 }
 
 /* Tablet estreito — 640px: cases vão para 2 por linha */
@@ -540,13 +548,8 @@ body {
     position: relative !important;
   }
 
-  /* CardDestaque: empilha imagem acima do copy */
-  .card-destaque-grid { grid-template-columns: 1fr !important; }
-  .card-destaque-img  { min-height: 240px !important; }
-
   /* Case pages */
   .case-metrics-grid  { grid-template-columns: 1fr 1fr !important; }
-  .case-nav-grid      { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 480px) {

@@ -1,3 +1,6 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import { ArrowUpRight } from 'lucide-react'
 import { HoverLink } from '@/components/ui/HoverLink'
 import { NavItem } from '@/components/ui/NavItem'
@@ -10,6 +13,8 @@ const navLinks = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+  const hrefOf = (hash: string) => pathname === '/' ? hash : `/${hash}`
   const year = new Date().getFullYear()
   return (
     <footer style={{ background: 'var(--d0)', borderTop: '1px solid var(--d-border)' }}>
@@ -41,7 +46,7 @@ export function Footer() {
               <p className="t-label" style={{ color: 'var(--dt3)', marginBottom: 'var(--spacing-ms)' }}>Navegação</p>
               <nav style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-ms)' }}>
                 {navLinks.map(l => (
-                  <NavItem key={l.label} href={l.href}>{l.label}</NavItem>
+                  <NavItem key={l.label} href={hrefOf(l.href)}>{l.label}</NavItem>
                 ))}
               </nav>
             </div>
